@@ -10,7 +10,7 @@ Description: This plugin provides the ability to have randomly selected quotes b
 
 Author: Robert Wise
 Version: 0.1
-Author URI: CodeandReload.com
+Author URI: http://CodeandReload.com
 */
 
 if(!function_exists("codeAndReloadLink")){
@@ -90,7 +90,12 @@ Dolly'll never go away again";
 
 
 	if(in_array("link",$nq_excerpts)){
-		$bm = get_bookmarks( array(	            'orderby'        => 'rand', 	            'limit'          => 1, 	            'category'       => get_option("nq_links"),	            'hide_invisible' => 1,	            'show_updated'   => 0));
+		$bm = get_bookmarks( array(
+	            'orderby'        => 'rand', 
+	            'limit'          => 1, 
+	            'category'       => get_option("nq_links"),
+	            'hide_invisible' => 1,
+	            'show_updated'   => 0));
 
 		for ($i = 1; $i <= $max; $i++) {
 			if(trim($bm[0]->link_url)){
@@ -104,8 +109,12 @@ Dolly'll never go away again";
 	if(in_array("excerpt",$nq_excerpts)){
 		$nq_cats = get_option("nq_cats");
 
-	function nq_posts_where( $where = '' ) {		$where .= " AND (wp_posts.post_excerpt IS NOT NULL) AND (wp_posts.post_excerpt <>'')";
-		remove_filter( 'posts_where', 'nq_posts_where' );		return $where;	}	add_filter( 'posts_where', 'nq_posts_where' );
+	function nq_posts_where( $where = '' ) {
+		$where .= " AND (wp_posts.post_excerpt IS NOT NULL) AND (wp_posts.post_excerpt <>'')";
+		remove_filter( 'posts_where', 'nq_posts_where' );
+		return $where;
+	}
+	add_filter( 'posts_where', 'nq_posts_where' );
 		
 		$rand_posts = get_posts("suppress_filters=0&numberposts=1&orderby=rand&caller_get_posts=1&category=$nq_cats");
 
@@ -170,14 +179,49 @@ if ($onAdmin=="yes"){
 	add_action('admin_head', 'nice_css');
 }
 
-/** * nqWidget Class */class nqWidget extends WP_Widget {    /** constructor */    function nqWidget() {
-	$widget_ops = array('description' => __( "Displays a random quote as defined in the Plugins > Nice Quote Options page") );        parent::WP_Widget(false, $name = 'Nice Quotes', $widget_ops);	
-    }    /** @see WP_Widget::widget */    function widget($args, $instance) {		        extract( $args );        $title = apply_filters('widget_title', $instance['title']);
+/**
+ * nqWidget Class
+ */
+class nqWidget extends WP_Widget {
+    /** constructor */
+    function nqWidget() {
+	$widget_ops = array('description' => __( "Displays a random quote as defined in the Plugins > Nice Quote Options page") );
+
+        parent::WP_Widget(false, $name = 'Nice Quotes', $widget_ops);	
+
+    }
+
+    /** @see WP_Widget::widget */
+    function widget($args, $instance) {		
+        extract( $args );
+        $title = apply_filters('widget_title', $instance['title']);
 
 	echo $before_widget; 
-		 if ( $title )                        echo $before_title . $title . $after_title;			echo "<ul><li>" .return_nice_quotes(). "</li></ul>";			echo $after_widget;     }    /** @see WP_Widget::update */    function update($new_instance, $old_instance) {					$instance = $old_instance;	$instance['title'] = strip_tags($new_instance['title']);        return $instance;    }    /** @see WP_Widget::form */    function form($instance) {				        $title = esc_attr($instance['title']);        ?>            <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label></p>        <?php     }} // class nqWidget
+		 if ( $title )
+                        echo $before_title . $title . $after_title;
+			echo "<ul><li>" .return_nice_quotes(). "</li></ul>";
+			echo $after_widget; 
+    }
 
-// register nqWidget widgetadd_action('widgets_init', create_function('', 'return register_widget("nqWidget");'));
+    /** @see WP_Widget::update */
+    function update($new_instance, $old_instance) {				
+	$instance = $old_instance;
+	$instance['title'] = strip_tags($new_instance['title']);
+        return $instance;
+    }
+
+    /** @see WP_Widget::form */
+    function form($instance) {				
+        $title = esc_attr($instance['title']);
+        ?>
+            <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label></p>
+        <?php 
+    }
+
+} // class nqWidget
+
+// register nqWidget widget
+add_action('widgets_init', create_function('', 'return register_widget("nqWidget");'));
 
 
 ?>
