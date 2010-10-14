@@ -4,7 +4,7 @@ Donate link: http://www.codeandreload.com/wp-plugins/nicequotes/#donate
 Tags: quotation, quotations, quote, quotes, random, random quotes, rotating, shortcode, template, testimonies, testimony, widget, rotator  
 Requires at least: 2.9  
 Tested up to: 3.0.1  
-Stable tag: 0.1  
+Stable tag: 0.2  
 
 
 Allows display of random quotes via shortcode, a sidebar widget, and/or on the admin page. Quotes can be user-entered, post excerpts or links.
@@ -107,6 +107,9 @@ post or be able to show an affiliated link.
 
 = 0.1 =  
 * Initial public release.
+
+= 0.2 =  
+* fixed the shortcode to match the documentation (now both `[nicequote]` and `[nice-quote]` work. It is recommended that you use the one without the dash.
 
 
 == Upgrade Notice ==

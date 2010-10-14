@@ -133,6 +133,7 @@ Dolly'll never go away again";
 }
 
 add_shortcode('nice-quote', 'return_nice_quotes');
+add_shortcode('nicequote', 'return_nice_quotes');
 
 // This just echoes the chosen line, we'll position it later
 function return_nice_quotes() {
