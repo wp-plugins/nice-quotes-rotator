@@ -1,15 +1,11 @@
 <?php
-/**
- * @package nice_quotes
- * @version 1.5.1
- */
 /*
 Plugin Name: Nice Quotes Rotator
 Plugin URI: CodeAndReload.com
 Description: This plugin provides the ability to have randomly selected quotes be displayed on the admin page, by using a shortcode or by using a sidebar widget. The quotes include user-entered quotes, and can optionally include excerpts from a user-chosen category and can also optionally include links from a user-chosen links category. There also is an option for including the lyrics from "Hello Dolly". The plugin can be used for random quotes, rotating testimonials, rotating random affiliate links, or random featured posts.
 
 Author: Robert Wise
-Version: 0.1
+Version: 0.2
 Author URI: http://CodeandReload.com
 */
 
