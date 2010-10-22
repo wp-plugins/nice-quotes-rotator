@@ -5,7 +5,7 @@ Plugin URI: CodeAndReload.com
 Description: This plugin provides the ability to have randomly selected quotes be displayed on the admin page, by using a shortcode or by using a sidebar widget. The quotes include user-entered quotes, and can optionally include excerpts from a user-chosen category and can also optionally include links from a user-chosen links category. There also is an option for including the lyrics from "Hello Dolly". The plugin can be used for random quotes, rotating testimonials, rotating random affiliate links, or random featured posts.
 
 Author: Robert Wise
-Version: 0.3
+Version: 0.4
 Author URI: http://CodeandReload.com
 */
 
@@ -146,6 +146,8 @@ function return_nice_quotes($atts, $content = null) {
 
 	if(trim($tagoverride)){
 		$myTag1 = $tagoverride;
+	} else {
+		$myTag1 = $myTag;
 	}
 
 	$chosen = nice_quotes_get_quote();

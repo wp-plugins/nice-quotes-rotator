@@ -4,7 +4,7 @@ Donate link: http://www.codeandreload.com/wp-plugins/nicequotes/#donate
 Tags: quotation, quotations, quote, quotes, random, random quotes, rotating, shortcode, template, testimonies, testimony, widget, rotator  
 Requires at least: 2.9  
 Tested up to: 3.0.1  
-Stable tag: 0.3
+Stable tag: 0.4
 
 
 Allows display of random quotes via shortcode, a sidebar widget, and/or on the admin page. Quotes can be user-entered, post excerpts or links.
@@ -112,9 +112,10 @@ post or be able to show an affiliated link.
 * fixed the shortcode to match the documentation (now `[nicequote]` works. 
 
 = 0.3 =  
-* Added two attributes to the shortcode. `tagoverride` which overrides whichever option is set in the options page for which HTML tag to use. This is useful for changing the tag when something should be inline or block. 
+* Added two attributes to the shortcode. `tagoverride` which overrides whichever option is set in the options page for which HTML tag to use. This is useful for changing the tag when something should be inline or block. `additionalclasses` is used for adding additional CSS classes to the nicequote. See [This page](http://codex.wordpress.org/CSS) for a listing of  built-in WordPress classes, for reference.
 
-`additionalclasses` is used for adding additional CSS classes to the nicequote. See [This page](http://codex.wordpress.org/CSS) for a listing of  built-in WordPress classes, for reference.
+= 0.4 =  
+* Fixed an error caused in the last update.
 
 == Upgrade Notice ==
 
@@ -126,6 +127,9 @@ post or be able to show an affiliated link.
 
 = 0.3 =  
 * Added two attributes (`tagoverride` and`additionalclasses`) to the shortcode.
+
+= 0.4 =  
+* Fixed an error caused in the last update.
 
 == Support ==
 
