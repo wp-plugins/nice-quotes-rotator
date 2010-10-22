@@ -5,7 +5,7 @@ Plugin URI: CodeAndReload.com
 Description: This plugin provides the ability to have randomly selected quotes be displayed on the admin page, by using a shortcode or by using a sidebar widget. The quotes include user-entered quotes, and can optionally include excerpts from a user-chosen category and can also optionally include links from a user-chosen links category. There also is an option for including the lyrics from "Hello Dolly". The plugin can be used for random quotes, rotating testimonials, rotating random affiliate links, or random featured posts.
 
 Author: Robert Wise
-Version: 0.2
+Version: 0.3
 Author URI: http://CodeandReload.com
 */
 
@@ -132,7 +132,7 @@ add_shortcode('nice-quote', 'return_nice_quotes');
 add_shortcode('nicequote', 'return_nice_quotes');
 
 // This just echoes the chosen line, we'll position it later
-function return_nice_quotes() {
+function return_nice_quotes($atts, $content = null) {
 	global $myTag;
 	if (!trim($myTag)){
 		$myTag=get_option("nq_tag");
@@ -140,9 +140,16 @@ function return_nice_quotes() {
 	if (!trim($myTag)){
 		$myTag="p";		
 	}
+	
+	extract( shortcode_atts( array(	'tagoverride' => '',	'additionalclasses' => '',	), $atts ) );
+
+
+	if(trim($tagoverride)){
+		$myTag1 = $tagoverride;
+	}
 
 	$chosen = nice_quotes_get_quote();
-	return "<$myTag class='niceQuote'>" . convert_smilies(do_shortcode($chosen)) . "</$myTag>";
+	return "<$myTag1 class='niceQuote $additionalclasses'>" . convert_smilies(do_shortcode($chosen)) . "</$myTag1>";
 }
 
 
