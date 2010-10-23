@@ -132,8 +132,8 @@ add_shortcode('nice-quote', 'return_nice_quotes');
 add_shortcode('nicequote', 'return_nice_quotes');
 
 // This just echoes the chosen line, we'll position it later
-function return_nice_quotes($atts = null, $content = null) {
-	global $myTag;
+function return_nice_quotes($atts, $content = null) {
+
 	if (!trim($myTag)){
 		$myTag=get_option("nq_tag");
 	}
@@ -141,9 +141,14 @@ function return_nice_quotes($atts = null, $content = null) {
 		$myTag="p";		
 	}
 	
-	extract( shortcode_atts( array(	'tagoverride' => '',	'additionalclasses' => '',	), $atts ) );
+	extract( shortcode_atts( array(
+	'tagoverride' => '',
+	'additionalclasses' => '',
+	), $atts ) );
 
-
+	
+	$tagoverride =  trim($atts[tagoveride]);
+	$additionalclasses =  trim($atts[additionalclasses]);
 	if(trim($tagoverride)){
 		$myTag1 = $tagoverride;
 	} else {
