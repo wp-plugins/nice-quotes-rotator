@@ -4,7 +4,8 @@
 
 
 function nicequote_create_menu() {
-  nicequote_add_submenu_page('plugins.php','Nice Quote Options', 'Nice Quote Options', 'manage_options', "nicequote-options");}
+  nicequote_add_submenu_page('plugins.php','Nice Quote Options', 'Nice Quote Options', 'manage_options', "nicequote-options");
+}
 
 
 function nicequote_api_init(){
@@ -32,12 +33,12 @@ function nicequote_api_init(){
 
 	));
 
-	nicequote_add_settings_field('nq_links', 'Links from the following category may be added to the list of quotes depending on the option above.', 'dropdown_terms', "nicequote-options", 'nicequote_setting_section', array (
+	nicequote_add_settings_field('nq_links', 'Links from the following link-category may be added to the list of quotes depending on the option above.', 'dropdown_terms', "nicequote-options", 'nicequote_setting_section', array (
 		'link_category'
 
 	));
 
-	nicequote_add_settings_field('nq_cats', 'Excerpts from the following link-category may be added to the list of quotes depending on the option above,', 'dropdown_cat', "nicequote-options", 'nicequote_setting_section', array (
+	nicequote_add_settings_field('nq_cats', 'Excerpts from the following category may be added to the list of quotes depending on the option above,', 'dropdown_cat', "nicequote-options", 'nicequote_setting_section', array (
 
 	));
 
@@ -60,12 +61,14 @@ function nicequote_api_init(){
 add_action('admin_menu', 'nicequote_create_menu');
 add_action('admin_init', 'nicequote_api_init');
 
-if ( ! function_exists( 'nicequote_plugin_options' ) ){function nicequote_plugin_options() {
+if ( ! function_exists( 'nicequote_plugin_options' ) ){
+function nicequote_plugin_options() {
 	global $nicequote_page_title;
 	global $nicequote_page_parent;
 	$page = $_GET["page"];
 	echo '<div class="wrap">';
-	echo "<div class='icon32 icon_$page' id='icon-options-general'><br/></div>";	echo '<h2>' . $nicequote_page_title[$page] . '</h2>';
+	echo "<div class='icon32 icon_$page' id='icon-options-general'><br/></div>";
+	echo '<h2>' . $nicequote_page_title[$page] . '</h2>';
 	echo '</div>';
 ////	echo '<table class="form-table"><tr><td>';
 	echo "<br /><a href='" .get_bloginfo("url"). "/wp-admin/plugin-install.php?tab=search&mc_find_plugins=TRUE'>" .__("Find more plugins by this author"). "</a>";
@@ -131,7 +134,8 @@ if ( ! function_exists( 'nicequote_section_callback_function' ) ){
 function nicequote_section_callback_function($x) {
 	global $nicequote_setting_section_text;
 	echo $nicequote_setting_section_text[$x["id"]];
-///	settings_fields( $x["id"] );}
+///	settings_fields( $x["id"] );
+}
 }
 
 if ( ! function_exists( 'nicequote_field_callback_function' ) ){

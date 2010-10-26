@@ -5,7 +5,7 @@ Plugin URI: CodeAndReload.com
 Description: This plugin provides the ability to have randomly selected quotes be displayed on the admin page, by using a shortcode or by using a sidebar widget. The quotes include user-entered quotes, and can optionally include excerpts from a user-chosen category and can also optionally include links from a user-chosen links category. There also is an option for including the lyrics from "Hello Dolly". The plugin can be used for random quotes, rotating testimonials, rotating random affiliate links, or random featured posts.
 
 Author: Robert Wise
-Version: 0.6
+Version: 0.7
 Author URI: http://CodeandReload.com
 */
 
@@ -105,14 +105,10 @@ Dolly'll never go away again";
 	if(in_array("excerpt",$nq_excerpts)){
 		$nq_cats = get_option("nq_cats");
 
-	function nq_posts_where( $where = '' ) {
-		$where .= " AND (wp_posts.post_excerpt IS NOT NULL) AND (wp_posts.post_excerpt <>'')";
-		remove_filter( 'posts_where', 'nq_posts_where' );
-		return $where;
-	}
 	add_filter( 'posts_where', 'nq_posts_where' );
 		
 		$rand_posts = get_posts("suppress_filters=0&numberposts=1&orderby=rand&caller_get_posts=1&category=$nq_cats");
+
 
 
 		for ($i = 1; $i <= $max; $i++) {
@@ -131,6 +127,13 @@ Dolly'll never go away again";
 add_shortcode('nice-quote', 'return_nice_quotes');
 add_shortcode('nicequote', 'return_nice_quotes');
 
+	function nq_posts_where( $where = '' ) {
+		$where .= " AND (wp_posts.post_excerpt IS NOT NULL) AND (wp_posts.post_excerpt <>'')";
+		remove_filter( 'posts_where', 'nq_posts_where' );
+		return $where;
+	}
+
+
 // This just echoes the chosen line, we'll position it later
 function return_nice_quotes($atts = null, $content = null) {
 
@@ -141,10 +144,7 @@ function return_nice_quotes($atts = null, $content = null) {
 		$myTag="p";		
 	}
 	
-	extract( shortcode_atts( array(
-	'tagoverride' => '',
-	'additionalclasses' => '',
-	), $atts ) );
+	extract( shortcode_atts( array(	'tagoverride' => '',	'additionalclasses' => '',	), $atts ) );
 
 	
 	$tagoverride =  trim($atts[tagoveride]);
