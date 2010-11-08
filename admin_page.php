@@ -218,7 +218,7 @@ function makeAdminOption($vals, $my_field, $type) {
 		echo "<$tag value='$stateKey' $is_selected>";
 		echo $labelStart . $stateValue . $labelEnd;	
 		if ($type != "radio" && $type != "checkbox"){
-			echo '</$tag>';	
+			echo "</$tag>";	
 		} elseif ($type == "checkbox") {
 			return;
 		}
