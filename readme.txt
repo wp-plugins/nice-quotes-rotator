@@ -4,7 +4,7 @@ Donate link: http://www.codeandreload.com/wp-plugins/nicequotes/#donate
 Tags: quotation, quotations, quote, quotes, random, random quotes, rotating, shortcode, template, testimonies, testimony, widget, rotator  
 Requires at least: 2.9  
 Tested up to: 3.0.1  
-Stable tag: 0.8
+Stable tag: 0.9
 
 
 Allows display of random quotes via shortcode, a sidebar widget, and/or on the admin page. Quotes can be user-entered, post excerpts or links.
@@ -139,6 +139,9 @@ post or be able to show an affiliated link.
 
 = 0.8 =  
 * Fixed an error in admin-page.php cause by using single-quotes instead of double quotes.
+
+= 0.9 =  
+* Fixed an error in admin-page.php cause by un-initialized variables. Also increased the size of the textarea for entering quotes to 90% width and 12em height.
 
 
 == Support ==

@@ -29,13 +29,10 @@ function nicequote_api_init(){
 	 "excerpt" => "A random post excerpt<br />",
 	 "link" => "A random link<br />",
 	 "excerpt,link" => "both a random post excerpt and a random link<br />",
-
-
 	));
 
 	nicequote_add_settings_field('nq_links', 'Links from the following link-category may be added to the list of quotes depending on the option above.', 'dropdown_terms', "nicequote-options", 'nicequote_setting_section', array (
 		'link_category'
-
 	));
 
 	nicequote_add_settings_field('nq_cats', 'Excerpts from the following category may be added to the list of quotes depending on the option above,', 'dropdown_cat', "nicequote-options", 'nicequote_setting_section', array (
@@ -70,6 +67,7 @@ function nicequote_plugin_options() {
 	echo "<div class='icon32 icon_$page' id='icon-options-general'><br/></div>";
 	echo '<h2>' . $nicequote_page_title[$page] . '</h2>';
 	echo '</div>';
+	echo "<style>textarea.nq_quotes{width:90%; height:12em}</style>";
 ////	echo '<table class="form-table"><tr><td>';
 	echo "<br /><a href='" .get_bloginfo("url"). "/wp-admin/plugin-install.php?tab=search&mc_find_plugins=TRUE'>" .__("Find more plugins by this author"). "</a>";
 ////	echo "</td></tr></table>";
@@ -152,6 +150,9 @@ if ( ! function_exists( 'makeAdminOption' ) ){
 
 function makeAdminOption($vals, $my_field, $type) {
 	global $color_picker_count;
+	$my_string = "";
+	$labelStart	= "";
+	$labelEnd = "";
 	$tag = "input";
 	$option_test = get_option($my_field);
 	if ($type=="checkbox"){
