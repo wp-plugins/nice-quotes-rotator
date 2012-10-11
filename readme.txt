@@ -3,7 +3,9 @@ Contributors: CodeAndReload
 Donate link: http://www.codeandreload.com/wp-plugins/nicequotes/#donate  
 Tags: quotation, quotations, quote, quotes, random, random quotes, rotating, shortcode, template, testimonies, testimony, widget, rotator  
 Requires at least: 2.9  
-Tested up to: 3.4.2  
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 3.4.2
 Stable tag: 1.0
 
 
