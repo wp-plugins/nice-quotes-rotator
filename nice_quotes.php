@@ -29,9 +29,12 @@ if (is_admin()){
 
 function nice_quotes_get_quote() {
 	$lyrics = trim(get_option('nq_quotes'));
+	if(trim($lyrics)){
+		$lyrics.="\n";	
+	}
 
 	if(trim(get_option("nq_hello"))){
-		$lyrics .= "\nHello, Dolly
+		$lyrics .= "Hello, Dolly
 Well, hello, Dolly
 It's so nice to have you back where you belong
 You're lookin' swell, Dolly
@@ -67,8 +70,10 @@ Dolly'll never go away again";
 
 
 	$nq_excerpts = get_option("nq_excerpts");
-	$nq_excerpts = explode(",", $nq_excerpts);
+	$nq_excerpts = explode(",", $nq_excerpts);	
+	
 	$max = count($lyrics);
+	
 
 	$min = 0;
 	$myMax = 1;
@@ -85,6 +90,8 @@ Dolly'll never go away again";
 	}
 
 
+	$quoteCount = count($lyrics);
+	
 	if(in_array("link",$nq_excerpts)){
 		$bm = get_bookmarks( array(
 	            'orderby'        => 'rand', 
@@ -102,10 +109,13 @@ Dolly'll never go away again";
 		}
 		
 	}
+
+	$linkCount = count($lyrics)-$quoteCount;
+
 	if(in_array("excerpt",$nq_excerpts)){
 		$nq_cats = get_option("nq_cats");
 
-	add_filter( 'posts_where', 'nq_posts_where' );
+		add_filter( 'posts_where', 'nq_posts_where' );
 		
 		$rand_posts = get_posts("suppress_filters=0&numberposts=1&orderby=rand&caller_get_posts=1&category=$nq_cats");
 
@@ -118,7 +128,16 @@ Dolly'll never go away again";
 		 }		
 		
 	}
+	
+	$excerptCount = count($lyrics)-$linkCount;
+//	http://stackoverflow.com/questions/3384058/how-do-you-strip-whitespace-from-an-array-using-php
+	
 	// And then randomly choose a line
+	if (trim(get_option("nq_pluggable"))){
+		$pluginQuotes = apply_filters("get_append_plugin_quotes", array(), $quoteCount, $linkCount, $excerptCount, count($lyrics));
+		$lyrics = array_merge($pluginQuotes,$lyrics);
+	}
+	$lyrics = array_filter(array_map('trim', $lyrics));	
 	$index = mt_rand($min, count($lyrics) - $myMax);
 	$lyricText = $lyrics[ $index ];
 	return wptexturize( $lyricText );
@@ -212,7 +231,7 @@ class nqWidget extends WP_Widget {
 
 	echo $before_widget; 
 		 if ( $title )
-                        echo $before_title . $title . $after_title;
+            echo $before_title . $title . $after_title;
 			echo "<ul><li>" .return_nice_quotes(). "</li></ul>";
 			echo $after_widget; 
     }

@@ -4,7 +4,7 @@ Donate link: http://www.codeandreload.com/wp-plugins/nicequotes/#donate
 Tags: quotation, quotations, quote, quotes, random, random quotes, rotating, shortcode, template, testimonies, testimony, widget, rotator  
 Requires at least: 2.9  
 Tested up to: 3.0.1  
-Stable tag: 0.9
+Stable tag: 1.0
 
 
 Allows display of random quotes via shortcode, a sidebar widget, and/or on the admin page. Quotes can be user-entered, post excerpts or links.
@@ -72,9 +72,9 @@ Yes they can. Smilies are only included if they are enabled under Settings->Writ
 
 Quotes have a class of 'niceQuote' set on them. To style them add to your stylesheet:
 
-	`.niceQuote {`  
-		`// css properties here`  
-	`}`
+	`.niceQuote {  
+		// css properties here;
+	}`
 
 
 = How can the quotes be used on a post or page? =
@@ -88,6 +88,11 @@ The quote is randomly chosen each time the post or page is loaded.
 Yes they are. Each time the quote is loaded (whether on the admin page, a sidebar widget or via
 shortcode) the quote will be random with the ratios listed above.
 
+
+= Can other plugins add quotes to be be displayed? I'd like to create a package of quotes. =
+
+Yes! See pluggable_example.php for sample code to get started.
+In order for these quotes to be displayed, it is necessary to check the option to allow plugins to add quotes.
 
 = Why is there an option to include Hello Dolly lyrics? =
 
@@ -109,7 +114,7 @@ post or be able to show an affiliated link.
 * Initial public release.
 
 = 0.2 =  
-* fixed the shortcode to match the documentation (now `[nicequote]` works. 
+* fixed the shortcode to match the documentation (now `[nicequote]` works). 
 
 = 0.3 =  
 * Added two attributes to the shortcode. `tagoverride` which overrides whichever option is set in the options page for which HTML tag to use. This is useful for changing the tag when something should be inline or block. `additionalclasses` is used for adding additional CSS classes to the nicequote. See [This page](http://codex.wordpress.org/CSS) for a listing of  built-in WordPress classes, for reference.
@@ -119,6 +124,10 @@ post or be able to show an affiliated link.
 
 = 0.5 =  
 * Fixed an error caused in the last update of a missing argument to one of the functions.
+
+= 1.0 =  
+* Removed any quotes that consist solely of whitespace. Fixed an error when rotating Hello Dolly quotes with no custom quotes, causing a black quote to appear. Added support for plugin developers to inject their own quotes.
+
 
 == Upgrade Notice ==
 
@@ -143,6 +152,8 @@ post or be able to show an affiliated link.
 = 0.9 =  
 * Fixed an error in admin-page.php cause by un-initialized variables. Also increased the size of the textarea for entering quotes to 90% width and 12em height.
 
+= 1.0 =  
+* Removed any quotes that consist solely of whitespace. Fixed an error when rotating Hello Dolly quotes with no custom quotes, causing a black quote to appear. Added support for plugin developers to add there own quotes.
 
 == Support ==
 

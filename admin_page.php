@@ -11,9 +11,9 @@ function nicequote_create_menu() {
 function nicequote_api_init(){
 
 	nicequote_add_settings_section('nicequote_setting_section', '', 'Where should quotes be displayed', "nicequote-options");
-	nicequote_add_settings_field('nq_admin', 'Should quotes be shown on the admin page?', 'radio', "nicequote-options", 'nicequote_setting_section', array (
+	nicequote_add_settings_field('nq_admin', 'Should quotes be shown on the admin dashboard?', 'radio', "nicequote-options", 'nicequote_setting_section', array (
 	 "yes" => "Yes",
-	 "no" => "No",
+	 "" => "No",
 	));
 	nicequote_add_settings_field('nq_quotes', 'Enter custom quotes here separated by a new-line<br /><br />(You may use use <code>&lt;br /&gt;</code> for multi-line quotes)', 'textarea', "nicequote-options", 'nicequote_setting_section', array (
 
@@ -25,7 +25,7 @@ function nicequote_api_init(){
 
 
 	nicequote_add_settings_field('nq_excerpts', 'What should be displayed in addition to the quotes entered above?', 'radio', "nicequote-options", 'nicequote_setting_section', array (
-	 "no" => "No additional quotes <br />",
+	 "" => "No additional quotes <br />",
 	 "excerpt" => "A random post excerpt<br />",
 	 "link" => "A random link<br />",
 	 "excerpt,link" => "both a random post excerpt and a random link<br />",
@@ -49,6 +49,12 @@ function nicequote_api_init(){
 	 "tt" => "teletype (for monospace fonts)",
 	 "code" => "code (for monospace fonts)",
 	));
+	
+	nicequote_add_settings_field('nq_pluggable', 'Allow other plugins to add quotes?', 'radio', "nicequote-options", 'nicequote_setting_section', array (
+	 "yes" => "Yes",
+	 "" => "No",
+	));
+	
 }
 
 
